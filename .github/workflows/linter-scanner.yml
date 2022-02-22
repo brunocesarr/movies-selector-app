@@ -31,8 +31,9 @@ jobs:
 
   run-linters:
     name: Run linters
+    needs: build
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Run linters
         uses: wearerequired/lint-action@v1
