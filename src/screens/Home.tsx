@@ -10,7 +10,7 @@ import { getPopularMovies } from "../services/movies.service";
 import homeStyles from "../styles/home";
 
 export function HomeScreen() {
-  const {goBack} = useNavigation();
+  const { goBack } = useNavigation();
 
   const [popularMovies, setPopularMovies] = useState<Array<Movie>>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -39,7 +39,7 @@ export function HomeScreen() {
     <View style={homeStyles.container}>
       <Appbar.Header style={homeStyles.header}>
         <Appbar.BackAction onPress={goBack} />
-        <Appbar.Content title="Home"/>
+        <Appbar.Content title="Home" />
       </Appbar.Header>
       <Text style={homeStyles.title}>Popular Movies</Text>
       <FlatList

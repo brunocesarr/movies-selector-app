@@ -1,9 +1,9 @@
+import { API_KEY } from "@env";
 import axios, { AxiosResponse } from "axios";
 
 import { ConvertMovieApiResponseToMovie } from "../helpers/converts/MovieInfoConverter";
 import { Genre, Movie, MovieApiResponse } from "../interfaces";
 
-const API_KEY: string = "10eb90e57a2d07480780fbc8af4f7470";
 const API_MOVIES: string = "https://api.themoviedb.org/3";
 const GENRES_MOVIES: string = "/genre/movie/list";
 const POPULAR_MOVIES: string = "/movie/popular";

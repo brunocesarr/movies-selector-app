@@ -10,7 +10,7 @@ const movieCardStyles = StyleSheet.create({
     margin: 4,
     borderBottomColor: Colors.black,
     borderBottomWidth: 1,
-    borderRadius: 10
+    borderRadius: 10,
   },
   movieTitle: {
     color: Colors.white,

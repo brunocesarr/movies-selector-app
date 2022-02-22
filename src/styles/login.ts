@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "react-native-paper";
+
 import { fontsSizes } from "../theme";
 
 const loginStyles = StyleSheet.create({
@@ -10,15 +11,15 @@ const loginStyles = StyleSheet.create({
     padding: 10,
   },
   logo: {
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   title: {
     color: Colors.white,
-    fontFamily: 'Bangers_400Regular',
+    fontFamily: "Bangers_400Regular",
     fontSize: fontsSizes.FONT_SIZE_TITLE_LOGIN,
     textAlign: "center",
     padding: 50,
-    marginBottom: 50
+    marginBottom: 50,
   },
   icon: {
     fontSize: 150,
@@ -27,12 +28,12 @@ const loginStyles = StyleSheet.create({
   },
   label: {
     color: Colors.white,
-    fontFamily: 'Bangers_400Regular',
+    fontFamily: "Bangers_400Regular",
     fontSize: fontsSizes.FONT_SIZE_LARGE,
     textAlign: "center",
     marginTop: 5,
-    marginBottom: 30
-  }, 
+    marginBottom: 30,
+  },
   input: {
     width: 300,
     height: 50,
@@ -49,25 +50,25 @@ const loginStyles = StyleSheet.create({
     borderRadius: 50,
     height: 70,
     width: 300,
-    alignItems: 'center',
-    justifyContent: "space-between" ,
-    textAlign: 'center',
+    alignItems: "center",
+    justifyContent: "space-between",
+    textAlign: "center",
     display: "flex",
     flexDirection: "row",
-  }, 
+  },
   textButton: {
     color: Colors.white,
-    fontFamily: 'Bangers_400Regular',
+    fontFamily: "Bangers_400Regular",
     fontSize: fontsSizes.FONT_SIZE_TITLE,
-    marginLeft: 30
+    marginLeft: 30,
   },
   iconButton: {
     color: Colors.white,
-    marginRight: 10
+    marginRight: 10,
   },
   error: {
     color: Colors.red500,
-  }
+  },
 });
 
 export default loginStyles;

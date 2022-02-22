@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "react-native-paper";
+
 import { colors, fontsSizes } from "../theme";
 
 const homeStyles = StyleSheet.create({
@@ -16,7 +17,7 @@ const homeStyles = StyleSheet.create({
   },
   header: {
     backgroundColor: Colors.red900,
-  }
+  },
 });
 
 export default homeStyles;

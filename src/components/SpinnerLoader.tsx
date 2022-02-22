@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
-import styles from "../styles/global";
+
 import stylesSpinner from "../styles/components/spinner";
+import styles from "../styles/global";
 
 export function SpinnerLoader() {
   return (
