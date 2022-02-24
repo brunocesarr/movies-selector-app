@@ -9,7 +9,12 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write **/*.{js,jsx,ts,tsx,json} && prettier --write *.{js,jsx,ts,tsx,json}"
+    "lint:report": "yarn lint -f json -o eslint.report.json",
+    "format": "prettier --write **/*.{js,jsx,ts,tsx,json} && prettier --write *.{js,jsx,ts,tsx,json}",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:report": "yarn test:coverage --testResultsProcessor jest-sonar-reporter"
   },
   "dependencies": {
     "@expo-google-fonts/allan": "^0.2.2",
@@ -46,6 +51,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "husky": "^7.0.4",
+    "jest-sonar-reporter": "^2.0.0",
     "prettier": "^2.5.1",
     "react-native-dotenv": "^3.3.1",
     "typescript": "~4.3.5"
@@ -67,5 +73,13 @@
     "./src/**": [
       "prettier --check ./src"
     ]
+  },
+  "jestSonar": {
+    "reportPath": "coverage",
+    "reportFile": [
+      "test-reporter.xml",
+      "eslint.report.json"
+    ],
+    "indent": 4
   }
 }
