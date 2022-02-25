@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "lint:report": "yarn lint -f json -o eslint.report.json",
+    "lint:report": "yarn lint -f json -o ./coverage/eslint.report.json",
     "format": "prettier --write **/*.{js,jsx,ts,tsx,json} && prettier --write *.{js,jsx,ts,tsx,json}",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -76,10 +76,7 @@
   },
   "jestSonar": {
     "reportPath": "coverage",
-    "reportFile": [
-      "test-reporter.xml",
-      "eslint.report.json"
-    ],
+    "reportFile": "test-reporter.xml",
     "indent": 4
   }
 }
