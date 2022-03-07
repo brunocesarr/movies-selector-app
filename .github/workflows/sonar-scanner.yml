@@ -8,9 +8,14 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 
+
       - name: 🏗 Setup repo
         uses: actions/checkout@v2
 
@@ -27,18 +32,11 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
+        run: yarn test:coverage
+
+      - name: 📦 Install dependencies
         run: yarn install
 
-  sonarcloud:
-    name: SonarCloud
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 
-      - name: 🏗 Execute jest-sonnar
-        run: yarn test:report
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
