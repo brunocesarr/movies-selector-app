@@ -32,10 +32,10 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: yarn test:coverage
-
-      - name: 📦 Install dependencies
         run: yarn install
+
+      - name: 📦 Execute Tests
+        run: yarn test:coverage
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
