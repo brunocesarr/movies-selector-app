@@ -25,7 +25,14 @@ import { HomeScreen } from "../screens/Home";
 import { LoginScreen } from "../screens/Login";
 import { themeNavigation } from "../theme";
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Login: undefined;
+  Home: undefined;
+  MovieDetail: undefined;
+  NotFound: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function Router() {
   const [fontsLoaded] = useFonts({
@@ -61,4 +68,10 @@ export function Router() {
       </Stack.Navigator>
     </NavigationContainer>
   );
+}
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
 }

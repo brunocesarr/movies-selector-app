@@ -9,7 +9,7 @@ export function LoginScreen() {
   const { navigate } = useNavigation();
 
   const handleLogin = () => {
-    navigate({ name: "Home" });
+    navigate("Home");
   };
 
   return (
