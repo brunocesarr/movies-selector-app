@@ -89,9 +89,7 @@ const getPopularMovies = async (
         async (item: MovieApiResponse) => {
           let movieInfo = await ConvertMovieApiResponseToMovie(item);
           movieInfo.genres = await Promise.all(
-            item.genre_ids.map(
-              async (idGenre) => await getMoviesGenresById(idGenre)
-            )
+            item.genre_ids.map(async (idGenre) => getMoviesGenresById(idGenre))
           );
           return movieInfo;
         }

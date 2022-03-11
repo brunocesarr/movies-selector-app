@@ -1,7 +1,3 @@
-import {
-  getMoviesGenresById,
-  getUrlImageMovie,
-} from "../services/movies.service";
 import { Genre } from "./Genre";
 
 export interface Movie {

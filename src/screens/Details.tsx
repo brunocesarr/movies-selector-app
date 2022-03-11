@@ -11,6 +11,7 @@ export function MovieDetailScreen() {
   useEffect(() => {
     const getMovieDetail = async () => {
       try {
+        console.log("Request Executing...");
       } catch (error) {
         console.error("Request error: ", error);
       } finally {
