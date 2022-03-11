@@ -82,12 +82,20 @@
     "testResultsProcessor": "jest-sonar-reporter",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/test/"
+      "**/__tests__/**",
+      "**/styles/**",
+      "**/themes/**",
+      "**/router/**"
     ]
   },
   "jestSonar": {
     "reportPath": "coverage",
     "reportFile": "test-reporter.xml",
     "indent": 4
+  },
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "./tsconfig.json"
+    }
   }
 }
