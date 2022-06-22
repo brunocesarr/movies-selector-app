@@ -12,6 +12,7 @@ const loginStyles = StyleSheet.create({
   },
   logo: {
     justifyContent: "flex-end",
+    alignItems: "center",
   },
   title: {
     color: Colors.white,

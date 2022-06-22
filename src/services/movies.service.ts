@@ -1,13 +1,9 @@
 import { API_KEY } from "@env";
 import axios, { AxiosResponse } from "axios";
 
-import { ConvertMovieApiResponseToMovie } from "../helpers/converts/MovieInfoConverter";
+import { Constants } from "../helpers/Constants";
+import { ConvertMovieApiResponseToMovie } from "../helpers/converts";
 import { Genre, Movie, MovieApiResponse } from "../interfaces";
-
-const API_MOVIES: string = "https://api.themoviedb.org/3";
-const GENRES_MOVIES: string = "/genre/movie/list";
-const POPULAR_MOVIES: string = "/movie/popular";
-const IMAGE_URL: string = "https://image.tmdb.org/t/p";
 
 interface PopularMoviesList {
   pageNumber: number;
@@ -17,7 +13,7 @@ interface PopularMoviesList {
 let popularsMovies: PopularMoviesList[] = [];
 
 export const moviesAPI = axios.create({
-  baseURL: API_MOVIES,
+  baseURL: Constants.MovieApi.API_MOVIES,
   timeout: 1000,
 });
 
@@ -47,7 +43,7 @@ const getPathRoute = (path: string, queryParams: string[] = []) => {
 
 const getMoviesGenres = async (): Promise<Array<Genre>> => {
   try {
-    const genresRoute = getPathRoute(GENRES_MOVIES);
+    const genresRoute = getPathRoute(Constants.MovieApi.GENRES_MOVIES);
     const { data }: AxiosResponse = await moviesAPI.get(genresRoute);
     return data.genres ?? [];
   } catch (error) {
@@ -58,7 +54,7 @@ const getMoviesGenres = async (): Promise<Array<Genre>> => {
 
 const getMoviesGenresById = async (idGenre: number): Promise<Genre> => {
   try {
-    const genresRoute = getPathRoute(GENRES_MOVIES);
+    const genresRoute = getPathRoute(Constants.MovieApi.GENRES_MOVIES);
     const { data }: AxiosResponse = await moviesAPI.get(genresRoute);
     return data.genres.find((item: Genre) => item.id === idGenre);
   } catch (error) {
@@ -80,7 +76,10 @@ const getPopularMovies = async (
     let queryParams = ["sort_by=popularity.desc"];
     if (pageNumber && pageNumber > 0) queryParams.push(`page=${pageNumber}`);
 
-    const popularMoviesRoute = getPathRoute(POPULAR_MOVIES, queryParams);
+    const popularMoviesRoute = getPathRoute(
+      Constants.MovieApi.POPULAR_MOVIES,
+      queryParams
+    );
     const { data }: AxiosResponse = await moviesAPI.get(popularMoviesRoute);
 
     let result: Array<Movie> = [];
@@ -119,23 +118,4 @@ const getPopularMovies = async (
   }
 };
 
-const getUrlImageMovie = (
-  pathImage?: string,
-  width?: number,
-  heigth?: number
-): string => {
-  if (!pathImage) return "";
-
-  if (width) return `${IMAGE_URL}/w${width}${pathImage}`;
-
-  if (heigth) return `${IMAGE_URL}/h${heigth}${pathImage}`;
-
-  return `${IMAGE_URL}/original${pathImage}`;
-};
-
-export {
-  getMoviesGenres,
-  getMoviesGenresById,
-  getPopularMovies,
-  getUrlImageMovie,
-};
+export { getMoviesGenres, getMoviesGenresById, getPopularMovies };
