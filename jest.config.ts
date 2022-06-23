@@ -1,6 +1,6 @@
-import type { Config } from "@jest/types";
-import { defaults } from "jest-config";
+import { defaults } from 'jest-config';
 
+import type { Config } from "@jest/types";
 const ignores = ["/node_modules/", "src/__mocks__/", "src/types/"];
 
 const config: Config.InitialOptions = {
@@ -33,7 +33,8 @@ const config: Config.InitialOptions = {
     },
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
-  setupFilesAfterEnv: ["<rootDir>/setup-test/test-setup.ts"],
+  setupFiles: ["<rootDir>/setup-test/setEnvVars.ts"],
+  setupFilesAfterEnv: ["<rootDir>/setup-test/testSetup.ts"],
   testMatch: ["**/__tests__/**/*.(ts|tsx)"],
   testPathIgnorePatterns: [...ignores],
   testResultsProcessor: "jest-sonar-reporter",
