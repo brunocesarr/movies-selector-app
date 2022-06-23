@@ -15,9 +15,9 @@ const getUrlImageMovie = (
   return `${Constants.MovieApi.IMAGE_URL}/original${pathImage}`;
 };
 
-export async function ConvertMovieApiResponseToMovie(
+export function ConvertMovieApiResponseToMovie(
   movieApiInfo: MovieApiResponse
-): Promise<Movie> {
+): Movie {
   const {
     id,
     adult,

@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Caption, Headline } from 'react-native-paper';
+import React, { useEffect, useState } from "react";
+import { Caption, Headline } from "react-native-paper";
 
-import { SpinnerLoader } from '../components/SpinnerLoader';
-import { Movie } from '../interfaces';
+import { SpinnerLoader } from "../components/SpinnerLoader";
+import { Movie } from "../interfaces";
 
 export function MovieDetailScreen() {
   const [movieDetail, setMovieDetail] = useState<Movie | null>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const getMovieDetail = async () => {
-      try {
-        console.log("Request Executing...");
-      } catch (error) {
-        console.error("Request error: ", error);
-        setMovieDetail(null);
-      } finally {
-        setLoading(false);
-      }
+      setLoading(false);
     };
 
     getMovieDetail();
@@ -27,9 +20,5 @@ export function MovieDetailScreen() {
 
   if (!movieDetail) return <Caption>Not Found</Caption>;
 
-  return (
-    <>
-      <Headline>Movie Detail</Headline>
-    </>
-  );
+  return <Headline>Movie Detail</Headline>;
 }

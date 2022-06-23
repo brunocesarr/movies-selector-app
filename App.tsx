@@ -7,10 +7,10 @@ import { theme } from "./src/theme";
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <SafeAreaProvider>
+    <SafeAreaProvider>
+      <PaperProvider theme={theme}>
         <Router />
-      </SafeAreaProvider>
-    </PaperProvider>
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }
