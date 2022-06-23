@@ -1,9 +1,13 @@
+import type { Config } from "@jest/types";
 import { defaults } from "jest-config";
 
-import type { Config } from "@jest/types";
 const ignores = ["/node_modules/", "src/__mocks__/", "src/types/"];
 
 const config: Config.InitialOptions = {
+  globals: {
+    __DEV__: true,
+    API_KEY: "test-env-key",
+  },
   preset: "jest-expo",
   verbose: true,
   clearMocks: true,
