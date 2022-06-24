@@ -1,4 +1,4 @@
-import { Genre } from "./Genre";
+import { Genre } from "@interfaces/Genre";
 
 export interface Movie {
   id: number;
@@ -32,4 +32,9 @@ export interface MovieApiResponse {
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+export interface MoviePaginateApiResponse {
+  page: number;
+  results: MovieApiResponse[];
 }

@@ -2,6 +2,22 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "typeRoots": ["./src/types"]
-  }
+    "typeRoots": ["./src/@types"],
+    "baseUrl": "./",
+    "paths": {
+      "@mocks/*": ["./__mocks__/*"],
+      "@tests/*": ["./__tests__/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
+      "@router/*": ["./src/router/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@services/*": ["./src/services/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@theme/*": ["./src/theme/*"]
+    }
+  },
+  "include": ["./src", "./"],
+  "exclude": ["jest.config.ts"]
 }

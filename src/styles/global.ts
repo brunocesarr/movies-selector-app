@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
   },
 });
 
-export default styles;
+export { globalStyles };

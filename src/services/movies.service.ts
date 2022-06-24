@@ -1,9 +1,13 @@
 import { API_KEY } from "@env";
+import { Constants } from "@helpers/Constants";
+import { ConvertMovieApiResponseToMovie } from "@helpers/converts";
+import { Genre, GenreApiResponse } from "@interfaces/Genre";
+import {
+  Movie,
+  MovieApiResponse,
+  MoviePaginateApiResponse,
+} from "@interfaces/Movie";
 import axios, { AxiosResponse } from "axios";
-
-import { Constants } from "../helpers/Constants";
-import { ConvertMovieApiResponseToMovie } from "../helpers/converts";
-import { Genre, Movie, MovieApiResponse } from "../interfaces";
 
 interface PopularMoviesList {
   pageNumber: number;
@@ -52,11 +56,17 @@ const getMoviesGenres = async (): Promise<Array<Genre>> => {
   }
 };
 
-const getMoviesGenresById = async (idGenre: number): Promise<Genre> => {
+const getMoviesGenresById = async (
+  idGenre: number
+): Promise<Genre | undefined> => {
   try {
     const genresRoute = getPathRoute(Constants.MovieApi.GENRES_MOVIES);
-    const { data }: AxiosResponse = await moviesAPI.get(genresRoute);
-    return data.genres.find((item: Genre) => item.id === idGenre);
+    const {
+      data: { genres },
+    }: AxiosResponse<{ genres: GenreApiResponse[] }> = await moviesAPI.get<{
+      genres: GenreApiResponse[];
+    }>(genresRoute);
+    return genres.find((item: Genre) => item.id === idGenre);
   } catch (error) {
     getErrorAxiosMessage(error);
     throw error;
@@ -80,16 +90,23 @@ const getPopularMovies = async (
       Constants.MovieApi.POPULAR_MOVIES,
       queryParams
     );
-    const { data }: AxiosResponse = await moviesAPI.get(popularMoviesRoute);
+    const {
+      data: { results },
+    }: AxiosResponse<MoviePaginateApiResponse> = await moviesAPI.get<MoviePaginateApiResponse>(
+      popularMoviesRoute
+    );
 
     let result: Array<Movie> = [];
-    if (data.results) {
-      let moviesInfo: Array<Promise<Movie>> = data.results.map(
+    if (results) {
+      let moviesInfo: Array<Promise<Movie>> = results.map(
         async (item: MovieApiResponse) => {
           let movieInfo = ConvertMovieApiResponseToMovie(item);
-          movieInfo.genres = await Promise.all(
-            item.genre_ids.map(async (idGenre) => getMoviesGenresById(idGenre))
-          );
+          if (item.genre_ids.length > 0)
+            movieInfo.genres = await Promise.all(
+              item.genre_ids.map(async (idGenre) =>
+                getMoviesGenresById(idGenre)
+              )
+            );
           return movieInfo;
         }
       );

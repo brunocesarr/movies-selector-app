@@ -1,7 +1,6 @@
+import { SpinnerLoader } from "@components/SpinnerLoader";
 import { render } from "@testing-library/react-native";
 import React from "react";
-
-import { SpinnerLoader } from "../../components";
 
 describe("SpinnerLoader", () => {
   describe("Render", () => {

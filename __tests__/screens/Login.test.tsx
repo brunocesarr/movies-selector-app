@@ -1,7 +1,6 @@
+import { LoginScreen } from "@screens/Login";
 import { render } from "@testing-library/react-native";
 import React from "react";
-
-import { LoginScreen } from "../../screens";
 
 describe("LoginScreen", () => {
   describe("Render", () => {

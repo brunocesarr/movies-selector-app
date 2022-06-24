@@ -1,9 +1,8 @@
+import { Movie } from "@interfaces/Movie";
+import { movieCardStyles } from "@styles/components";
 import React from "react";
 import { Image, Text, View } from "react-native";
 import { Colors, Paragraph } from "react-native-paper";
-
-import { Movie } from "../interfaces";
-import movieCardStyles from "../styles/movie-card";
 
 interface IMovieCardProps {
   movieInfo: Movie;

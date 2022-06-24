@@ -1,8 +1,7 @@
+import { SpinnerLoader } from "@components/SpinnerLoader";
+import { Movie } from "@interfaces/Movie";
 import React, { useEffect, useState } from "react";
 import { Caption, Headline } from "react-native-paper";
-
-import { SpinnerLoader } from "../components/SpinnerLoader";
-import { Movie } from "../interfaces";
 
 export function MovieDetailScreen() {
   const [movieDetail, setMovieDetail] = useState<Movie | null>();

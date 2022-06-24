@@ -1,13 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
+import { homeStyles } from "@styles/screens";
 import React, { useEffect, useState } from "react";
-import { FlatList, View, Text } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { Appbar, Caption } from "react-native-paper";
 
 import { MovieCard } from "../components/MovieCard";
 import { SpinnerLoader } from "../components/SpinnerLoader";
 import { Movie } from "../interfaces";
 import { getPopularMovies } from "../services/movies.service";
-import homeStyles from "../styles/home";
 
 export function HomeScreen() {
   const { goBack } = useNavigation();
@@ -32,8 +32,7 @@ export function HomeScreen() {
   }, []);
 
   if (loading) return <SpinnerLoader />;
-
-  if (!popularMovies) return <Caption>Not Found</Caption>;
+  if (popularMovies.length == 0) return <Caption>Not Found</Caption>;
 
   return (
     <View style={homeStyles.container}>

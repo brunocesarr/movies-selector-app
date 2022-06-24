@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "react-native-paper";
 
-import { colors, fontsSizes } from "../theme";
+import { colors } from "../../theme";
 
-const homeStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
@@ -20,4 +20,4 @@ const homeStyles = StyleSheet.create({
   },
 });
 
-export default homeStyles;
+export { styles };

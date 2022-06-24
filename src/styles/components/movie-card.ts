@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "react-native-paper";
 
-import { fontsSizes } from "../theme";
+import { fontsSizes } from "../../theme";
 
-const movieCardStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   movieCard: {
     backgroundColor: Colors.grey800,
     padding: 10,
@@ -50,4 +50,4 @@ const movieCardStyles = StyleSheet.create({
   },
 });
 
-export default movieCardStyles;
+export { styles };

@@ -1,5 +1,5 @@
-import { Movie, MovieApiResponse } from "../../interfaces";
-import { Constants } from "../Constants";
+import { Constants } from "@helpers/Constants";
+import { Movie, MovieApiResponse } from "@interfaces/Movie";
 
 const getUrlImageMovie = (
   pathImage?: string,

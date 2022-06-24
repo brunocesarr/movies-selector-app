@@ -1,18 +1,20 @@
 import { faker } from "@faker-js/faker/locale/en_US";
-
-import { Genre, Movie, MovieApiResponse } from "../../../interfaces";
+import { Genre, GenreApiResponse } from "@interfaces/Genre";
+import { Movie, MovieApiResponse } from "@interfaces/Movie";
 
 const createRandomMovieApiResponse = (): MovieApiResponse => {
   return {
     id: faker.datatype.number(),
     adult: faker.datatype.boolean(),
-    genre_ids: [faker.datatype.number()],
+    genre_ids: [faker.datatype.number({ min: 1, max: 5 })],
     original_language: faker.random.locale(),
-    original_title: faker.random.words(faker.datatype.number({ max: 5 })),
+    original_title: faker.random.words(
+      faker.datatype.number({ min: 3, max: 5 })
+    ),
     overview: faker.lorem.paragraph(faker.datatype.number({ max: 10 })),
     popularity: faker.datatype.number({ min: 0, max: 10 }),
     release_date: new Date(2022, 6, 22),
-    title: faker.random.words(faker.datatype.number({ max: 5 })),
+    title: faker.random.words(faker.datatype.number({ min: 1, max: 3 })),
     video: faker.datatype.boolean(),
     vote_average: faker.datatype.number({ min: 0, max: 10 }),
     vote_count: faker.datatype.number({ min: 0 }),
@@ -20,9 +22,9 @@ const createRandomMovieApiResponse = (): MovieApiResponse => {
   };
 };
 
-const createRandomGenre = (): Genre => {
+const createRandomGenre = (id: number = 1): Genre => {
   return {
-    id: faker.unique(faker.datatype.number),
+    id: id,
     name: faker.name.firstName(),
   };
 };
@@ -30,8 +32,25 @@ const createRandomGenre = (): Genre => {
 const createRandomGenres = (): Genre[] => {
   const genresMovie: Genre[] = [];
   Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach(
-    () => {
-      genresMovie.push(createRandomGenre());
+    (_, index: number) => {
+      genresMovie.push(createRandomGenre(index));
+    }
+  );
+  return genresMovie;
+};
+
+const createRandomGenreApiResponse = (id: number = 1): GenreApiResponse => {
+  return {
+    id: id,
+    name: faker.name.firstName(),
+  };
+};
+
+const createRandomGenresApiResponse = (): GenreApiResponse[] => {
+  const genresMovie: GenreApiResponse[] = [];
+  Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach(
+    (_, index: number) => {
+      genresMovie.push(createRandomGenreApiResponse(index));
     }
   );
   return genresMovie;
@@ -43,11 +62,13 @@ const createRandomMovie = (): Movie => {
     isAdultMovie: faker.datatype.boolean(),
     genres: createRandomGenres(),
     originalLanguage: faker.random.locale(),
-    originalTitle: faker.random.words(faker.datatype.number({ max: 5 })),
+    originalTitle: faker.random.words(
+      faker.datatype.number({ min: 3, max: 5 })
+    ),
     overview: faker.lorem.paragraph(faker.datatype.number({ max: 10 })),
     popularity: faker.datatype.number({ min: 0, max: 10 }),
     releaseDate: new Date(2022, 6, 22),
-    title: faker.random.words(faker.datatype.number({ max: 5 })),
+    title: faker.random.words(faker.datatype.number({ min: 1, max: 3 })),
     hasVideo: faker.datatype.boolean(),
     voteAverage: faker.datatype.number({ min: 0, max: 10 }),
     voteCount: faker.datatype.number({ min: 0 }),
@@ -69,9 +90,13 @@ Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach(
   }
 );
 
+const genresApiResponseMock: GenreApiResponse[] =
+  createRandomGenresApiResponse();
+
 export {
   moviesApiResponseMock,
   createRandomMovieApiResponse,
   moviesMock,
   createRandomMovie,
+  genresApiResponseMock,
 };

@@ -14,6 +14,25 @@ module.exports = function (api) {
           allowUndefined: false,
         },
       ],
+      [
+        "module-resolver",
+        {
+          extensions: [".ts", ".tsx", ".jsx", ".js", ".json"],
+          alias: {
+            "@mocks": "./__mocks__/",
+            "@tests": "./__tests__/",
+            "@assets": "./src/assets/",
+            "@components": "./src/components/",
+            "@helpers": "./src/helpers/",
+            "@interfaces": "./src/interfaces/",
+            "@router": "./src/router/",
+            "@screens": "./src/screens/",
+            "@services": "./src/services/",
+            "@styles": "./src/styles/",
+            "@theme": "./src/theme/",
+          },
+        },
+      ],
     ],
   };
 };

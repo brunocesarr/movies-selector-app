@@ -1,10 +1,9 @@
+import { MovieCard } from "@components/MovieCard";
+import { Movie } from "@interfaces/Movie";
+import { createRandomMovie } from "@mocks/";
 import { render } from "@testing-library/react-native";
 import React from "react";
 import { Colors } from "react-native-paper";
-
-import { createRandomMovie } from "../../__mocks__";
-import { MovieCard } from "../../components";
-import { Movie } from "../../interfaces";
 
 const generateMovieInfoMock = (voteAverage: number = 0) => {
   const movieInfoMock: Movie = createRandomMovie();

@@ -1,9 +1,9 @@
-import '@testing-library/jest-native/extend-expect';
+import "@testing-library/jest-native/extend-expect";
 
-import { jest } from '@jest/globals';
-import { cleanup } from '@testing-library/react-native';
+import { jest } from "@jest/globals";
+import { cleanup } from "@testing-library/react-native";
 
-import { server } from './mocks/server';
+import { server } from "./mocks/server";
 
 jest.mock("@react-navigation/native", () => {
   return {
@@ -24,5 +24,8 @@ jest.mock(
 );
 
 beforeAll(() => server.listen());
-afterEach(() => { server.resetHandlers(); cleanup()});
+afterEach(() => {
+  server.resetHandlers();
+  cleanup();
+});
 afterAll(() => server.close());

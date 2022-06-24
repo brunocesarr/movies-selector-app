@@ -1,10 +1,9 @@
+import AppIcon from "@assets/login/AppIcon.png";
 import { useNavigation } from "@react-navigation/native";
+import { loginStyles } from "@styles/screens";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
-import AppIcon from "../../assets/login/AppIcon.png";
-import loginStyles from "../styles/login";
 
 export function LoginScreen() {
   const { navigate } = useNavigation();

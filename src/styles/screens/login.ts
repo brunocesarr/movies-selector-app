@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "react-native-paper";
 
-import { fontsSizes } from "../theme";
+import { fontsSizes } from "../../theme";
 
-const loginStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
@@ -72,4 +72,4 @@ const loginStyles = StyleSheet.create({
   },
 });
 
-export default loginStyles;
+export { styles };
