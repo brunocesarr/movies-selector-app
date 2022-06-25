@@ -33,9 +33,12 @@ jobs:
 
       - name: 📦 Install dependencies
         run: yarn install
-
+      
       - name: 📦 Execute Tests
         run: yarn test:coverage
+
+      - name: 📦 Generate linter report
+        run: yarn lint:report
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
