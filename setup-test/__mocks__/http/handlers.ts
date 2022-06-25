@@ -12,7 +12,7 @@ export const handlers = [
         page: 1,
         results: moviesApiResponseMock,
       };
-      return res.once(ctx.status(200), ctx.json(JSON.parse(JSON.stringify(response))));
+      return res(ctx.status(200), ctx.delay(100), ctx.json(JSON.parse(JSON.stringify(response))));
     },
   ),
   rest.get(
