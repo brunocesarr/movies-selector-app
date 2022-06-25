@@ -1,23 +1,15 @@
-import { Constants } from "@helpers/Constants";
-import { Movie, MovieApiResponse } from "@interfaces/Movie";
+import { Constants } from '@helpers/Constants';
+import { Movie, MovieApiResponse } from '@interfaces/Movie';
 
-const getUrlImageMovie = (
-  pathImage?: string,
-  width?: number,
-  heigth?: number
-): string => {
-  if (!pathImage) return "";
-  else if (width)
-    return `${Constants.MovieApi.IMAGE_URL}/w${width}${pathImage}`;
-  else if (heigth)
-    return `${Constants.MovieApi.IMAGE_URL}/h${heigth}${pathImage}`;
+const getUrlImageMovie = (pathImage?: string, width?: number, heigth?: number): string => {
+  if (!pathImage) return '';
+  else if (width) return `${Constants.MovieApi.IMAGE_URL}/w${width}${pathImage}`;
+  else if (heigth) return `${Constants.MovieApi.IMAGE_URL}/h${heigth}${pathImage}`;
 
   return `${Constants.MovieApi.IMAGE_URL}/original${pathImage}`;
 };
 
-export function ConvertMovieApiResponseToMovie(
-  movieApiInfo: MovieApiResponse
-): Movie {
+export function ConvertMovieApiResponseToMovie(movieApiInfo: MovieApiResponse): Movie {
   const {
     id,
     adult,

@@ -1,30 +1,14 @@
-import { HomeScreen } from "@screens/Home";
-import {
-  cleanup,
-  render,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react-native";
-import React from "react";
+import { HomeScreen } from '@screens/Home';
+import { render, waitFor, waitForElementToBeRemoved } from '@testing-library/react-native';
+import React from 'react';
 
-import { server } from "../../setup-test/mocks/server";
-
-beforeAll(() => server.listen());
-afterEach(() => {
-  server.resetHandlers();
-  cleanup();
-});
-afterAll(() => server.close());
-
-describe("HomeScreen", () => {
-  describe("Render", () => {
-    test("With movies found", async () => {
+describe('HomeScreen', () => {
+  describe('Render', () => {
+    test('With movies found', async () => {
       const { container, getByText } = render(<HomeScreen />);
 
       await waitForElementToBeRemoved(() => getByText(/Loading/i));
-      const movieHomeTitleText = await waitFor(() =>
-        getByText(/Popular Movies/i)
-      );
+      const movieHomeTitleText = await waitFor(() => getByText(/Popular Movies/i));
 
       expect(container).toBeTruthy();
       expect(movieHomeTitleText).toBeTruthy();

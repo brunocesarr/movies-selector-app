@@ -1,2 +1,2 @@
-export * from "./MovieCard";
-export * from "./SpinnerLoader";
+export * from './MovieCard';
+export * from './SpinnerLoader';

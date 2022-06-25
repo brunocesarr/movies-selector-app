@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
-import { Colors } from "react-native-paper";
+import { StyleSheet } from 'react-native';
+import { Colors } from 'react-native-paper';
 
-import { colors } from "../../theme";
+import { colors } from '../../theme';
 
 const styles = StyleSheet.create({
   container: {

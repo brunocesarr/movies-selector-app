@@ -1,12 +1,12 @@
-import { StyleSheet } from "react-native";
-import { Colors } from "react-native-paper";
+import { StyleSheet } from 'react-native';
+import { Colors } from 'react-native-paper';
 
-import { fontsSizes } from "../../theme";
+import { fontsSizes } from '../../theme';
 
 const styles = StyleSheet.create({
   containerLoading: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textLoader: {
     color: Colors.red300,

@@ -7,9 +7,9 @@ interface MovieApiConstants {
 
 export class Constants {
   static MovieApi: MovieApiConstants = {
-    API_MOVIES: "https://api.themoviedb.org/3",
-    GENRES_MOVIES: "/genre/movie/list",
-    POPULAR_MOVIES: "/movie/popular",
-    IMAGE_URL: "https://image.tmdb.org/t/p",
+    API_MOVIES: 'https://api.themoviedb.org/3',
+    GENRES_MOVIES: '/genre/movie/list',
+    POPULAR_MOVIES: '/movie/popular',
+    IMAGE_URL: 'https://image.tmdb.org/t/p',
   };
 }

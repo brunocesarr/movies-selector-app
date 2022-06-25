@@ -1,1 +1,2 @@
-export * from "./MovieInfoConverter";
+export * from './GenreConverter';
+export * from './MovieInfoConverter';

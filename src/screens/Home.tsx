@@ -1,13 +1,13 @@
-import { useNavigation } from "@react-navigation/native";
-import { homeStyles } from "@styles/screens";
-import React, { useCallback, useEffect, useState } from "react";
-import { FlatList, Text, View } from "react-native";
-import { Appbar, Caption } from "react-native-paper";
+import { useNavigation } from '@react-navigation/native';
+import { homeStyles } from '@styles/screens';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { Appbar, Caption } from 'react-native-paper';
 
-import { MovieCard } from "../components/MovieCard";
-import { SpinnerLoader } from "../components/SpinnerLoader";
-import { Movie } from "../interfaces";
-import { getPopularMovies } from "../services/movies.service";
+import { MovieCard } from '../components/MovieCard';
+import { SpinnerLoader } from '../components/SpinnerLoader';
+import { Movie } from '../interfaces';
+import { getPopularMovies } from '../services/movies.service';
 
 export function HomeScreen() {
   const { goBack } = useNavigation();
@@ -21,14 +21,14 @@ export function HomeScreen() {
       const response = await getPopularMovies();
       setPopularMovies(response);
     } catch (error) {
-      console.error("Request error: ", error);
+      console.error('Request error: ', error);
     } finally {
       setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    getAllPopularMovies();
+    getAllPopularMovies().catch((error) => console.error('Request error: ', error));
   }, [getAllPopularMovies]);
 
   if (loading) return <SpinnerLoader />;

@@ -1,11 +1,11 @@
-import { Theme as ThemeNavigation } from "@react-navigation/native";
-import { Colors, DefaultTheme } from "react-native-paper";
-import { Theme } from "react-native-paper/src/types";
+import { Theme as ThemeNavigation } from '@react-navigation/native';
+import { Colors, DefaultTheme } from 'react-native-paper';
+import { Theme } from 'react-native-paper/src/types';
 
 export const colors = {
-  black_150: "#1B1C27",
-  black_170: "#272836",
-  gray_150: "#64656C",
+  black_150: '#1B1C27',
+  black_170: '#272836',
+  gray_150: '#64656C',
 };
 
 export const fontsSizes = {
@@ -41,20 +41,20 @@ export const theme: Theme = {
   },
   fonts: {
     regular: {
-      fontFamily: "Roboto",
-      fontWeight: "400",
+      fontFamily: 'Roboto',
+      fontWeight: '400',
     },
     medium: {
-      fontFamily: "Roboto",
-      fontWeight: "600",
+      fontFamily: 'Roboto',
+      fontWeight: '600',
     },
     thin: {
-      fontFamily: "Roboto",
-      fontWeight: "700",
+      fontFamily: 'Roboto',
+      fontWeight: '700',
     },
     light: {
-      fontFamily: "Roboto",
-      fontWeight: "300",
+      fontFamily: 'Roboto',
+      fontWeight: '300',
     },
   },
 };

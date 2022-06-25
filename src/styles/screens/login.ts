@@ -1,37 +1,37 @@
-import { StyleSheet } from "react-native";
-import { Colors } from "react-native-paper";
+import { StyleSheet } from 'react-native';
+import { Colors } from 'react-native-paper';
 
-import { fontsSizes } from "../../theme";
+import { fontsSizes } from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
   },
   logo: {
-    justifyContent: "flex-end",
-    alignItems: "center",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   title: {
     color: Colors.white,
-    fontFamily: "Bangers_400Regular",
+    fontFamily: 'Bangers_400Regular',
     fontSize: fontsSizes.FONT_SIZE_TITLE_LOGIN,
-    textAlign: "center",
+    textAlign: 'center',
     padding: 50,
     marginBottom: 50,
   },
   icon: {
     fontSize: 150,
-    textAlign: "center",
+    textAlign: 'center',
     color: Colors.red900,
   },
   label: {
     color: Colors.white,
-    fontFamily: "Bangers_400Regular",
+    fontFamily: 'Bangers_400Regular',
     fontSize: fontsSizes.FONT_SIZE_LARGE,
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 5,
     marginBottom: 30,
   },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderBottomColor: Colors.white,
     color: Colors.white,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: fontsSizes.FONT_SIZE_LARGE,
   },
   loginButton: {
@@ -51,15 +51,15 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     height: 70,
     width: 300,
-    alignItems: "center",
-    justifyContent: "space-between",
-    textAlign: "center",
-    display: "flex",
-    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'row',
   },
   textButton: {
     color: Colors.white,
-    fontFamily: "Bangers_400Regular",
+    fontFamily: 'Bangers_400Regular',
     fontSize: fontsSizes.FONT_SIZE_TITLE,
     marginLeft: 30,
   },
