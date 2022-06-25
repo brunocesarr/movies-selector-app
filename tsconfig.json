@@ -33,6 +33,9 @@
     "src/**/*",
     "**/*.test.ts",
     "**/*.test.tsx",
+    ".eslintrc.js",
+    "./babel.config.js",
+    "./jest.config.ts"
   ],
   "exclude": [
     "node_modules", 
