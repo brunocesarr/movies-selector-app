@@ -4,10 +4,12 @@ import React from "react";
 
 describe("LoginScreen", () => {
   describe("Render", () => {
-    test("Render default", () => {
-      const { container, getByText } = render(<LoginScreen />);
+    test("Render default", async () => {
+      const { container, findByText } = render(<LoginScreen />);
 
-      const movieLogoText = getByText(/Your personal movie selector app/i);
+      const movieLogoText = await findByText(
+        /Your personal movie selector app/i
+      );
 
       expect(container).toBeTruthy();
       expect(movieLogoText).toBeTruthy();

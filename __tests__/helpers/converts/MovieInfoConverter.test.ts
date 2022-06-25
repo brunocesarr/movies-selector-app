@@ -1,7 +1,7 @@
 import { Constants } from "@helpers/Constants";
 import { ConvertMovieApiResponseToMovie } from "@helpers/converts";
 import { MovieApiResponse } from "@interfaces/Movie";
-import { createRandomMovieApiResponse } from "@mocks/";
+import { createRandomMovieApiResponse } from "@mocks/services";
 
 const generateMovieApiResponse = (
   backdropPath: string | undefined = undefined

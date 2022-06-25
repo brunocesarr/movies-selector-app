@@ -1,10 +1,20 @@
 import { HomeScreen } from "@screens/Home";
 import {
+  cleanup,
   render,
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react-native";
 import React from "react";
+
+import { server } from "../../setup-test/mocks/server";
+
+beforeAll(() => server.listen());
+afterEach(() => {
+  server.resetHandlers();
+  cleanup();
+});
+afterAll(() => server.close());
 
 describe("HomeScreen", () => {
   describe("Render", () => {
@@ -25,13 +35,8 @@ describe("HomeScreen", () => {
     //     rest.get(
     //       `${Constants.MovieApi.API_MOVIES}${Constants.MovieApi.POPULAR_MOVIES}`,
     //       (req, res, ctx) => {
-    //         const response: MoviePaginateApiResponse = {
-    //           page: 1,
-    //           results: [],
-    //         };
     //         return res(
-    //           ctx.status(204),
-    //           ctx.json(JSON.parse(JSON.stringify(response)))
+    //           ctx.status(204)
     //         );
     //       }
     //     )

@@ -1,3 +1,6 @@
-process.env = Object.assign(process.env, {
+const env = process.env;
+
+process.env = {
+  ...env,
   API_KEY: "testing-env-key",
-});
+};

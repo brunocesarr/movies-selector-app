@@ -1,13 +1,13 @@
-import { useNavigation } from '@react-navigation/native';
-import { homeStyles } from '@styles/screens';
-import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
-import { Appbar, Caption } from 'react-native-paper';
+import { useNavigation } from "@react-navigation/native";
+import { homeStyles } from "@styles/screens";
+import React, { useCallback, useEffect, useState } from "react";
+import { FlatList, Text, View } from "react-native";
+import { Appbar, Caption } from "react-native-paper";
 
-import { MovieCard } from '../components/MovieCard';
-import { SpinnerLoader } from '../components/SpinnerLoader';
-import { Movie } from '../interfaces';
-import { getPopularMovies } from '../services/movies.service';
+import { MovieCard } from "../components/MovieCard";
+import { SpinnerLoader } from "../components/SpinnerLoader";
+import { Movie } from "../interfaces";
+import { getPopularMovies } from "../services/movies.service";
 
 export function HomeScreen() {
   const { goBack } = useNavigation();
@@ -25,14 +25,14 @@ export function HomeScreen() {
     } finally {
       setLoading(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     getAllPopularMovies();
   }, [getAllPopularMovies]);
 
   if (loading) return <SpinnerLoader />;
-  if (popularMovies.length == 0) return <Caption>Not Found</Caption>;
+  if (popularMovies.length === 0) return <Caption>Not Found</Caption>;
 
   return (
     <View style={homeStyles.container}>
