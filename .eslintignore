@@ -4,4 +4,4 @@ coverage
 src/__tests__
 
 .eslintrc.js
-.babel.config.js
+babel.config.js
