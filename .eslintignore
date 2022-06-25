@@ -1,7 +1,9 @@
 node_modules
 build
 coverage
+setup-test
 src/__tests__
+
 
 .eslintrc.js
 babel.config.js

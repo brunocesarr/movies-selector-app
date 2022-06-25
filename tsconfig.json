@@ -33,14 +33,11 @@
     "src/**/*",
     "**/*.test.ts",
     "**/*.test.tsx",
-    ".eslintrc.js",
-    "./babel.config.js",
-    "./jest.config.ts"
   ],
   "exclude": [
     "node_modules", 
+    ".eslintrc.js",
     "babel.config.js", 
-    "metro.config.js", 
     "jest.config.ts"
   ]
 }
