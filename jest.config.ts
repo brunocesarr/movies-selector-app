@@ -40,13 +40,13 @@ const config: Config.InitialOptions = {
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
   reporters: [
     'default',
-    [ 
-      '@casualbot/jest-sonar-reporter',
+    [
+      'jest-sonar',
       {
-        relativePaths: true,
+        reportedFilePath: 'absolute',
         outputName: 'test-reporter.xml',
-        outputDirectory: 'coverage'
-      }
+        outputDirectory: 'coverage',
+      },
     ],
   ],
   testSequencer: '<rootDir>/setup-test/testSequencer.js',
