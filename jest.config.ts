@@ -1,7 +1,7 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
-  testEnvironment:  'node',
+  testEnvironment: 'node',
   preset: 'jest-expo',
   globals: {
     'ts-jest': {
@@ -38,7 +38,17 @@ const config: Config.InitialOptions = {
   setupFiles: ['<rootDir>/setup-test/setEnvVars.ts'],
   setupFilesAfterEnv: ['<rootDir>/setup-test/testSetup.ts'],
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
-  testResultsProcessor: 'jest-sonar-reporter',
+  reporters: [
+    'default',
+    [
+      'jest-sonar',
+      {
+        outputDirectory: 'coverage',
+        outputName: 'test-reporter.xml',
+        reportedFilePath: 'absolute',
+      },
+    ],
+  ],
   testSequencer: '<rootDir>/setup-test/testSequencer.js',
   transform: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':

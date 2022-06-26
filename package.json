@@ -61,7 +61,7 @@
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "jest-expo": "^45.0.1",
-    "jest-sonar-reporter": "^2.0.0",
+    "jest-sonar": "^0.2.12",
     "msw": "^0.42.3",
     "prettier": "^2.7.1",
     "react-native-dotenv": "^3.3.1",
@@ -87,11 +87,6 @@
     "./src/**": [
       "prettier --check ./src"
     ]
-  },
-  "jestSonar": {
-    "reportPath": "coverage",
-    "reportFile": "test-reporter.xml",
-    "indent": 4
   },
   "globals": {
     "ts-jest": {
