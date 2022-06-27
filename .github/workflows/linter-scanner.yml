@@ -49,6 +49,4 @@ jobs:
         uses: reviewdog/action-eslint@v1
         with:
           eslint_flags: 'src/'
-          fail_on_error: true
-          level: error
           reporter: github-check
