@@ -29,13 +29,13 @@
     }
   },
   "include": [
-    "scripts/**/*",
-    "setup-test/**/*",
     "src/**/*",
     "**/*.test.ts",
     "**/*.test.tsx",
   ],
   "exclude": [
+    "scripts/**/*",
+    "setup-test/**/*",
     "node_modules", 
     ".eslintrc.js",
     "babel.config.js", 
