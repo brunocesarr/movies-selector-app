@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json src/ --fix",
-    "lint:report": "yarn lint -f json -o ./coverage/eslint.report.json",
+    "lint:report": "yarn lint -f json -o coverage/eslint.report.json",
     "format": "prettier --write {src,setup-test,__{tests,mocks}__}/**/*.{js,jsx,ts,tsx,json} *.{js,ts}",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
