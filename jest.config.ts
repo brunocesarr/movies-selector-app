@@ -43,7 +43,7 @@ const config: Config.InitialOptions = {
     [
       'jest-sonar',
       {
-        reportedFilePath: 'absolute',
+        reportedFilePath: 'relative',
         outputName: 'test-reporter.xml',
         outputDirectory: 'coverage',
       },
