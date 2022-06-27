@@ -48,8 +48,8 @@ jobs:
         run: yarn install
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
+        uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.TOKEN_GITHUB }}
-          eslint: true
-          prettier: true
+          reporter: github-check
+          fail_on_error: true
