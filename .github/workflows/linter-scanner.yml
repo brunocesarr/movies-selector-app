@@ -12,19 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
 
       - name: 🏗 Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: yarn
-
-      - name: 🏗 Setup Expo
-        uses: expo/expo-github-action@v7
-        with:
-          expo-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
         run: yarn install
@@ -36,10 +32,12 @@ jobs:
     
     steps:
       - name: 🏗 Setup repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
 
       - name: 🏗 Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: yarn
@@ -47,12 +45,12 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn install
 
-      - name: Run linters
+      - name: 🗒️ Execute Linter Report
         uses: github/super-linter/slim@v4
         with:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.js
           TYPESCRIPT_STANDARD_TSCONFIG_FILE: tsconfig.eslint.json

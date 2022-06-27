@@ -1,7 +1,7 @@
 ---
 # MegaLinter GitHub Action configuration file
 # More info at https://megalinter.github.io
-name: MegaLinter
+name: CI - Linter Scanner - Code Quality - Mega Linter
 
 on:
   # Trigger mega-linter at every push. Action will also be visible from Pull Requests to master

@@ -12,15 +12,13 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0 
 
-      - name: 🏗 Setup repo
-        uses: actions/checkout@v2
-
       - name: 🏗 Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: yarn
@@ -34,13 +32,13 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn install
       
-      - name: 📦 Execute Tests
+      - name: 🧪 Execute Tests Report
         run: yarn test:coverage
 
-      - name: 📦 Generate linter report
+      - name: 🗒️ Execute Linter Report
         run: yarn lint:report
 
-      - name: SonarCloud Scan
+      - name: 🔍 SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
