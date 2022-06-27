@@ -50,6 +50,5 @@ jobs:
       - name: Run linters
         uses: reviewdog/action-eslint@v1
         with:
-          github_token: ${{ secrets.TOKEN_GITHUB }}
           reporter: github-check
           fail_on_error: true
