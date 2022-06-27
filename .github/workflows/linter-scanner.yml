@@ -46,7 +46,4 @@ jobs:
         run: yarn install
 
       - name: 🗒️ Execute Linter Report
-        uses: reviewdog/action-eslint@v1
-        with:
-          eslint_flags: 'src/'
-          reporter: github-check
+        run: yarn lint
