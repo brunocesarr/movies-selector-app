@@ -48,7 +48,10 @@ jobs:
         run: yarn install
 
       - name: Run linters
-        uses: reviewdog/action-eslint@v1
+        uses: github/super-linter/slim@v4
         with:
-          reporter: github-check
-          fail_on_error: true
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.js
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
