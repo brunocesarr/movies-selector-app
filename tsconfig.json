@@ -29,6 +29,7 @@
     }
   },
   "include": [
+    "scripts/**/*",
     "setup-test/**/*",
     "src/**/*",
     "**/*.test.ts",

@@ -4,6 +4,7 @@
       "src",
       "__tests__",
       "setup-test",
+      "scripts",
     ]
   }
   
