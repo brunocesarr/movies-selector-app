@@ -46,13 +46,9 @@ jobs:
         run: yarn install
 
       - name: 🗒️ Execute Linter Report
-        uses: github/super-linter/slim@v4
+        uses: reviewdog/action-eslint@v1
         with:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
-          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.js
-          TYPESCRIPT_STANDARD_TSCONFIG_FILE: tsconfig.eslint.json
-          VALIDATE_JAVASCRIPT_STANDARD: false
-          VALIDATE_TYPESCRIPT_STANDARD: false
+          eslint_flags: 'src/'
+          fail_on_error: true
+          level: error
+          reporter: github-check
