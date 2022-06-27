@@ -44,7 +44,7 @@ const getMoviesGenres = async (): Promise<Array<Genre>> => {
       );
 
     return genresMovie;
-  } catch (axiosError: any) {
+  } catch (axiosError: unknown) {
     const error: Error = convertAxiosErrorToError(axiosError as AxiosError);
     throw error;
   }
@@ -54,7 +54,7 @@ const getMoviesGenresById = async (idGenre: number): Promise<Genre | undefined> 
   try {
     const genresMovie = await getMoviesGenres();
     return genresMovie.find((item: Genre) => item.id === idGenre);
-  } catch (axiosError: any) {
+  } catch (axiosError: unknown) {
     const error: Error = convertAxiosErrorToError(axiosError as AxiosError);
     throw error;
   }
@@ -83,7 +83,7 @@ const getPopularMovies = async (
       const moviesInfo: Array<Promise<Movie>> = results.map(async (item: MovieApiResponse) => {
         const movieInfo = ConvertMovieApiResponseToMovie(item);
         if (item.genre_ids.length > 0) {
-          let genresInfo: Genre[] = [];
+          const genresInfo: Genre[] = [];
           await Promise.all(
             item.genre_ids.map(async (idGenre) => {
               const genreInfo = await getMoviesGenresById(idGenre);
@@ -112,7 +112,7 @@ const getPopularMovies = async (
       );
 
     return result;
-  } catch (axiosError: any) {
+  } catch (axiosError: unknown) {
     const error: Error = convertAxiosErrorToError(axiosError as AxiosError);
     throw error;
   }
