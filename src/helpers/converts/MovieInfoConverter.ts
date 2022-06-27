@@ -1,10 +1,9 @@
 import { Constants } from '@helpers/Constants';
 import { Movie, MovieApiResponse } from '@interfaces/Movie';
 
-const getUrlImageMovie = (pathImage?: string, width?: number, heigth?: number): string => {
+const getUrlImageMovie = (pathImage?: string, width?: number): string => {
   if (!pathImage) return '';
   else if (width) return `${Constants.MovieApi.IMAGE_URL}/w${width}${pathImage}`;
-  else if (heigth) return `${Constants.MovieApi.IMAGE_URL}/h${heigth}${pathImage}`;
 
   return `${Constants.MovieApi.IMAGE_URL}/original${pathImage}`;
 };

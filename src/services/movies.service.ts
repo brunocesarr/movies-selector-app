@@ -1,6 +1,7 @@
 import { API_KEY } from '@env';
 import { Constants } from '@helpers/Constants';
 import { ConvertGenreApiResponseToGenre, ConvertMovieApiResponseToMovie } from '@helpers/converts';
+import { convertAxiosErrorToError } from '@helpers/utils';
 import { Genre, GenreApiResponse } from '@interfaces/Genre';
 import { Movie, MovieApiResponse, MoviePaginateApiResponse } from '@interfaces/Movie';
 import axios, { AxiosError, AxiosResponse } from 'axios';
@@ -16,20 +17,6 @@ export const moviesAPI = axios.create({
   baseURL: Constants.MovieApi.API_MOVIES,
   timeout: 1000,
 });
-
-const getErrorAxiosMessage = (error: AxiosError) => {
-  console.log(error);
-
-  if (error.response) {
-    console.error(error.response.data);
-    console.error(error.response.status);
-    console.error(error.response.headers);
-  } else if (error.request) {
-    console.error(error.request);
-  } else {
-    console.error('Error', error.message);
-  }
-};
 
 const getPathRoute = (path: string, queryParams: string[] = []) => {
   let finalRoute = `${path}?api_key=${API_KEY}`;
@@ -57,8 +44,8 @@ const getMoviesGenres = async (): Promise<Array<Genre>> => {
       );
 
     return genresMovie;
-  } catch (error) {
-    getErrorAxiosMessage(error);
+  } catch (axiosError: any) {
+    const error: Error = convertAxiosErrorToError(axiosError as AxiosError);
     throw error;
   }
 };
@@ -67,8 +54,8 @@ const getMoviesGenresById = async (idGenre: number): Promise<Genre | undefined> 
   try {
     const genresMovie = await getMoviesGenres();
     return genresMovie.find((item: Genre) => item.id === idGenre);
-  } catch (error) {
-    getErrorAxiosMessage(error);
+  } catch (axiosError: any) {
+    const error: Error = convertAxiosErrorToError(axiosError as AxiosError);
     throw error;
   }
 };
@@ -95,10 +82,16 @@ const getPopularMovies = async (
     if (results) {
       const moviesInfo: Array<Promise<Movie>> = results.map(async (item: MovieApiResponse) => {
         const movieInfo = ConvertMovieApiResponseToMovie(item);
-        if (item.genre_ids.length > 0)
-          movieInfo.genres = await Promise.all(
-            item.genre_ids.map(async (idGenre) => getMoviesGenresById(idGenre)),
+        if (item.genre_ids.length > 0) {
+          let genresInfo: Genre[] = [];
+          await Promise.all(
+            item.genre_ids.map(async (idGenre) => {
+              const genreInfo = await getMoviesGenresById(idGenre);
+              if (genreInfo) genresInfo.push(genreInfo);
+            }),
           );
+          movieInfo.genres = genresInfo;
+        }
         return movieInfo;
       });
 
@@ -119,8 +112,8 @@ const getPopularMovies = async (
       );
 
     return result;
-  } catch (error) {
-    getErrorAxiosMessage(error);
+  } catch (axiosError: any) {
+    const error: Error = convertAxiosErrorToError(axiosError as AxiosError);
     throw error;
   }
 };
