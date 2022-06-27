@@ -2,7 +2,11 @@
     "extends": "./tsconfig.json",
     "include": [
       "src",
-      "__tests__",
-    ]
+    ],
+    "exclude": [
+      "scripts/**/*",
+      "setup-test/**/*",
+      "__tests__"
+    ]  
   }
   
