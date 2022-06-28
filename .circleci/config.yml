@@ -7,6 +7,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/node:16.15.1
+    parallelism: 4
     steps:
       - checkout
       - restore_cache:
@@ -21,7 +22,7 @@ jobs:
       - run:
           name: "Run Test Suite"
           environment:
-            JEST_JUNIT_OUTPUT: coverage/test-reporter-junit.xml
+            JEST_JUNIT_OUTPUT: coverage/junit.xml
           command: yarn test:coverage
       - store_test_results:
           path: coverage

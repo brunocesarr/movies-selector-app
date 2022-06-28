@@ -53,7 +53,6 @@ const config: Config.InitialOptions = {
       {
         suiteName: 'Jest Tests',
         outputDirectory: 'coverage',
-        outputName: 'test-reporter-junit.xml',
         uniqueOutputName: 'false',
         classNameTemplate: '{classname} - {title}',
         titleTemplate: '{classname} - {title}',
