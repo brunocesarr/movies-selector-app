@@ -41,12 +41,18 @@ const config: Config.InitialOptions = {
   reporters: [
     'default',
     [
-      'jest-sonar',
+      'jest-junit', 
       {
-        reportedFilePath: 'relative',
-        outputName: 'test-reporter.xml',
-        outputDirectory: 'coverage',
-      },
+        suiteName: "Jest Tests",
+        outputDirectory: "coverage",
+        outputName: "test-reporter.xml",
+        uniqueOutputName: "false",
+        classNameTemplate: "{classname} - {title}",
+        titleTemplate: "{classname} - {title}",
+        ancestorSeparator: " › ",
+        usePathForSuiteName: "true",
+        reportTestSuiteErrors: "true"
+      }
     ],
   ],
   testSequencer: '<rootDir>/setup-test/testSequencer.js',

@@ -66,6 +66,7 @@
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "jest-expo": "^45.0.1",
+    "jest-junit": "^14.0.0",
     "jest-sonar": "^0.2.12",
     "msw": "^0.42.3",
     "postcss-syntax": "^0.36.2",
