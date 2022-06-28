@@ -19,9 +19,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: "Run Linter"
-          command: yarn lint:all --formatter junit -o reports/junit/js-lint-results.xml
-      - run:
           name: "Run Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
