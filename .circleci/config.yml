@@ -10,29 +10,26 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-      - restore_cache:
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
       - run: yarn install
       - save_cache:
-          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
-          paths:
-            - ~/.cache/yarn
-      - save_cache:
-          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
           paths:
             - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: jest tests
-          command: |
-            mkdir -p test-results/jest
-            yarn test
+          name: "Run Linter"
+          command: yarn lint -- --format junit -o reports/junit/js-lint-results.xml
+      - run:
+          name: "Run Test Suite"
           environment:
-            JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
+            JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
+          command: yarn test -- --ci --testResultsProcessor="jest-junit"
       - store_test_results:
-          path: test-results
+          path: reports/junit
       - store_artifacts:
-          path: test-results
+          path: reports/junit
 
 workflows:
   build-and-test:
