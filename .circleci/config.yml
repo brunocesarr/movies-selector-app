@@ -21,8 +21,8 @@ jobs:
       - run:
           name: "Run Test Suite"
           environment:
-            JEST_JUNIT_OUTPUT: coverage/test-reporter.xml
-          command: yarn test:coverage"
+            JEST_JUNIT_OUTPUT: coverage/test-reporter-junit.xml
+          command: yarn test:coverage
       - store_test_results:
           path: coverage
       - store_artifacts:
