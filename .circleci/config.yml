@@ -6,54 +6,39 @@ orbs:
 jobs:
   build-and-test:
     docker:
-      - image: "cimg/base:stable"
+      - image: cimg/node:16.15.1
     steps:
       - checkout
-      - node/install:
-          node-version: "16.15.1"
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install --immutable
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - .yarn/cache
-            - .yarn/unplugged
-      - run:
-          command: yarn test
-
-  build-and-lint:
-    docker:
-      - image: "cimg/base:stable"
-    steps:
-      - checkout
-      - node/install:
-          node-version: "16.15.1"
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install --immutable
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      - run: yarn install
       - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
           paths:
-            - .yarn/cache
-            - .yarn/unplugged
+            - ~/.cache/yarn
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
       - run:
-          command: yarn lint:all
+          name: jest tests
+          command: |
+            mkdir -p test-results/jest
+            yarn test
+          environment:
+            JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - node_modules
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
 
 workflows:
   build-and-test:
     jobs:
       - build-and-test
-  build-and-lint:
-    jobs:
-      - build-and-lint
