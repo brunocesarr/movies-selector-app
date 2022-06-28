@@ -6,6 +6,7 @@
   ],
   "plugins": ["stylelint-order"],
   "customSyntax": "@stylelint/postcss-css-in-js",
+  "verbose": true,
   "rules": {
     "rule-empty-line-before": ["always", { "except": "first-nested" }],
     "at-rule-empty-line-before": "always",

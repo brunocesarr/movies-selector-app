@@ -8,16 +8,17 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.json src/",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.json src/ --fix",
+    "lint:ts": "eslint --ext .js,.jsx,.ts,.tsx,.json src/",
+    "lint:ts-fix": "eslint --ext .js,.jsx,.ts,.tsx,.json src/ --fix",
+    "lint:ts-report": "yarn lint:ts -f json ./scripts/sonarqube_eslint_formatter.js -o coverage/eslint.report.json",
     "lint:style": "stylelint **/styles/**/*.ts",
-    "lint:all": "yarn lint:style & yarn lint",
-    "lint:report": "yarn lint:all -f json ./scripts/sonarqube_eslint_formatter.js -o coverage/eslint.report.json",
+    "lint:style-report": "stylelint **/styles/**/*.ts -o coverage/stylelint.report.json",
+    "lint:all": "yarn lint:ts & yarn lint:style",
+    "lint:all-report": "yarn lint:ts-report & yarn lint:style-report",
     "format": "prettier --write {src,setup-test,scripts,__{tests,mocks}__}/**/*.{js,jsx,ts,tsx,json} *.{js,ts}",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
-    "test:coverage": "yarn test --coverage",
-    "test:report": "yarn test:coverage --testResultsProcessor jest-sonar-reporter"
+    "test:coverage": "yarn test --coverage"
   },
   "dependencies": {
     "@expo-google-fonts/allan": "^0.2.2",
