@@ -12,7 +12,7 @@ const generateMovieApiResponse = (
   return movieApiResponseMock;
 };
 
-describe('MovieInfoConverter', () => {
+describe('MovieConverter', () => {
   describe('ConvertMovieApiResponseToMovie', () => {
     test('Without url image', () => {
       const movieApiResponseMock: MovieApiResponse = generateMovieApiResponse();
