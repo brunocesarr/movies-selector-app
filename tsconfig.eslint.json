@@ -1,0 +1,16 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+      "src",
+    ],
+    "exclude": [
+      "scripts/**/*",
+      "setup-test/**/*",
+      "**/__tests__/**/*",
+      "node_modules", 
+      ".eslintrc.js",
+      "babel.config.js", 
+      "jest.config.ts"
+    ]  
+  }
+  
