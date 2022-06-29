@@ -23,15 +23,12 @@ jobs:
       - restore_cache:
           keys:
             - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
       - run: yarn install
       - save_cache:
-          paths:
-            - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - ~/movies-selector-app/node_modules
 
   test:
     docker:
@@ -41,8 +38,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: "Run Test Suite"
