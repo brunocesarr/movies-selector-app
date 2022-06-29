@@ -11,6 +11,6 @@ echo "Execute Lint"
 npm run lint:all
 
 echo "Execute Tests"
-npm run test
+npm run test:coverage
 
 echo -e "${green}Git hook was SUCCESSFUL!${no_color}\n"
