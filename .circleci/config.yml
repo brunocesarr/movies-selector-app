@@ -23,6 +23,8 @@ jobs:
       - restore_cache:
           keys:
             - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
       - save_cache:
@@ -38,6 +40,8 @@ jobs:
       - restore_cache:
           keys:
             - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: "Run Test Suite"
