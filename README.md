@@ -9,8 +9,9 @@
 </p>
 
 ***
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=alert_status&branch=${GH_BRANCH})](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=${GH_BRANCH}) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=coverage&branch=${GH_BRANCH})](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=${GH_BRANCH}) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=code_smells&branch=${GH_BRANCH})](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=${GH_BRANCH}) 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/brunocesarr/movies-selector-app/tree/${GH_BRANCH}.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/brunocesarr/movies-selector-app/tree/${GH_BRANCH})
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=alert_status&branch=circleci-project-setup)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=circleci-project-setup) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=coverage&branch=circleci-project-setup)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=circleci-project-setup) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=code_smells&branch=circleci-project-setup)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=circleci-project-setup) 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/brunocesarr/movies-selector-app/tree/circleci-project-setup.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/brunocesarr/movies-selector-app/tree/circleci-project-setup)
 
 ***
 > App mobile to selection best movies.

@@ -22,7 +22,6 @@ fs.readFile(
     );
 
     const readmeModified = (data as string).replace(statusBadges, statusBadgesCurrentBranch);
-    console.log(readmeModified);
     fs.writeFile(
       path.join(__dirname, '..', 'README.md'),
       readmeModified,

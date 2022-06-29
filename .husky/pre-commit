@@ -8,7 +8,7 @@ no_color='\033[0m'
 echo -e "\n${yellow}Executing pre-commit hook${no_color}\n"
 
 echo "Execute Rewrite Status Badges in the README.md"
-npm run validate-publish-version
+npm run rewrite-status-badges
 
 echo "Execute Validate Version Publish"
 npm run validate-publish-version
