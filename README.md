@@ -8,7 +8,8 @@
   </a>
 </p>
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app) [![CircleCI](https://dl.circleci.com/status-badge/img/gh/brunocesarr/movies-selector-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/brunocesarr/movies-selector-app/tree/main)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=coverage)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app) 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/brunocesarr/movies-selector-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/brunocesarr/movies-selector-app/tree/main)
 
 ***
 > App mobile to selection best movies.
