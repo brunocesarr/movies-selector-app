@@ -4,10 +4,9 @@ orbs:
   node: circleci/node@5.0.2
 
 jobs:
-  build-and-test:
+  build:
     docker:
       - image: cimg/node:16.15.1
-    parallelism: 4
     steps:
       - checkout
       - restore_cache:
@@ -19,17 +18,31 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+  test:
+    docker:
+      - image: cimg/node:16.15.1
+    steps:
       - run:
           name: "Run Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: coverage/junit.xml
           command: yarn test:coverage
+  report:
+    docker:
+      - image: cimg/node:16.15.1
+    steps:
       - store_test_results:
           path: coverage
       - store_artifacts:
           path: coverage
 
 workflows:
-  build-and-test:
+  validate-gate:
     jobs:
-      - build-and-test
+      - build
+      - test:
+          requires:
+            - build
+      - report:
+          requires:
+            - test
