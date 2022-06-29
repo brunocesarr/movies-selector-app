@@ -48,10 +48,48 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: coverage/junit.xml
           command: yarn test:coverage
+      - save_cache:
+          key: v2-coverage-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/movies-selector-app/coverage
+  
+  lint:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - restore_cache:
+          keys:
+            - v2-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: "Run Linter"
+          command: yarn lint:all
+      - save_cache:
+          key: v2-coverage-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/movies-selector-app/coverage
+  
+  report:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - restore_cache:
+          keys:
+            - v2-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "package.json" }}
+      - restore_cache:
+          keys:
+            - v2-coverage-{{ checksum "package.json" }}
       - store_test_results:
-          path: coverage
+          path: ~/movies-selector-app/coverage
       - store_artifacts:
-          path: coverage
+          path: ~/movies-selector-app/coverage
 
 workflows:
   version: 2
@@ -64,3 +102,10 @@ workflows:
       - test:
           requires:
             - build
+      - lint:
+          requires:
+            - build
+      - report:
+          requires:
+            - test
+            - lint
