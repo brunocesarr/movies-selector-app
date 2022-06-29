@@ -4,45 +4,64 @@ orbs:
   node: circleci/node@5.0.2
 
 jobs:
+  checkout:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/movies-selector-app
+
   build:
     docker:
       - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
     steps:
-      - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run: yarn install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
   test:
     docker:
       - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
     steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: "Run Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: coverage/junit.xml
           command: yarn test:coverage
-  report:
-    docker:
-      - image: cimg/node:16.15.1
-    steps:
       - store_test_results:
           path: coverage
       - store_artifacts:
           path: coverage
 
 workflows:
+  version: 2
   validate-gate:
     jobs:
-      - build
+      - checkout
+      - build:
+          requires:
+            - checkout
       - test:
           requires:
             - build
-      - report:
-          requires:
-            - test
