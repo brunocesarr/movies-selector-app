@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: v2-repo-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/movies-selector-app
 
@@ -22,13 +22,13 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v2-repo-{{ .Environment.CIRCLE_SHA1 }}
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn install
       - save_cache:
-          key: v2-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/movies-selector-app/node_modules
 
@@ -39,17 +39,17 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v2-repo-{{ .Environment.CIRCLE_SHA1 }}
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: "Run Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: coverage/junit.xml
           command: yarn test:coverage
       - save_cache:
-          key: v2-coverage-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-coverage-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/movies-selector-app/coverage
   
@@ -60,15 +60,15 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v2-repo-{{ .Environment.CIRCLE_SHA1 }}
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: "Run Linter"
-          command: yarn lint:all
+          command: yarn lint:all-report
       - save_cache:
-          key: v2-coverage-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-linter-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/movies-selector-app/coverage
   
@@ -79,13 +79,16 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v2-repo-{{ .Environment.CIRCLE_SHA1 }}
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - restore_cache:
           keys:
-            - v2-coverage-{{ checksum "package.json" }}
+            - v1-coverage-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1  }}
+      - restore_cache:
+          keys:
+            - v1-linter-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1  }}
       - store_test_results:
           path: ~/movies-selector-app/coverage
       - store_artifacts:
