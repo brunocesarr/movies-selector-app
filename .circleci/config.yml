@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
-            - ~/movies-selector-app/node_modules
+            - ~/movies-selector-app
 
   test:
     docker:
