@@ -14,4 +14,3 @@ echo "Execute Tests"
 npm run test
 
 echo -e "${green}Git hook was SUCCESSFUL!${no_color}\n"
-

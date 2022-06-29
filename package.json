@@ -19,7 +19,7 @@
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
-    "validate-publish-version": "ts-node ./scripts/validateVersion.js",
+    "validate-publish-version": "ts-node ./scripts/validatePublishVersion.js",
     "rewrite-status-badges": "yarn ts-node ./scripts/changeBranchInTheReadme.ts",
     "postinstall": "husky install"
   },
