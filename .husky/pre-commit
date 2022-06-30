@@ -7,13 +7,10 @@ no_color='\033[0m'
 
 echo -e "\n${yellow}Executing pre-commit hook${no_color}\n"
 
-echo "Execute Rewrite Status Badges in the README.md"
-npm run rewrite-status-badges
-
 echo "Execute Validate Version Publish"
 npm run validate-publish-version
 
 echo "Execute Prettier"
-npx lint-staged
+npm run format
 
 echo -e "${green}Git hook was SUCCESSFUL!${no_color}\n"

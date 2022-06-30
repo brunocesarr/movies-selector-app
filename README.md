@@ -10,8 +10,8 @@
 
 ***
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=alert_status&branch=circleci-project-setup)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=circleci-project-setup) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=coverage&branch=circleci-project-setup)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=circleci-project-setup) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=code_smells&branch=circleci-project-setup)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=circleci-project-setup) 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/brunocesarr/movies-selector-app/tree/circleci-project-setup.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/brunocesarr/movies-selector-app/tree/circleci-project-setup)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=alert_status&branch=main)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=main) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=coverage&branch=main)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=main) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=brunocesarr_movies-selector-app&metric=code_smells&branch=main)](https://sonarcloud.io/summary/new_code?id=brunocesarr_movies-selector-app&branch=main) 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/brunocesarr/movies-selector-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/brunocesarr/movies-selector-app/tree/main)
 
 ***
 > App mobile to selection best movies.
