@@ -3,6 +3,7 @@ interface MovieApiConstants {
   GENRES_MOVIES: string;
   POPULAR_MOVIES: string;
   IMAGE_URL: string;
+  WIDTH_IMAGE_DEFAULT: number;
 }
 
 export class Constants {
@@ -11,5 +12,6 @@ export class Constants {
     GENRES_MOVIES: '/genre/movie/list',
     POPULAR_MOVIES: '/movie/popular',
     IMAGE_URL: 'https://image.tmdb.org/t/p',
+    WIDTH_IMAGE_DEFAULT: 500,
   };
 }

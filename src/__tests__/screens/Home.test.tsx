@@ -20,7 +20,8 @@ describe('HomeScreen', () => {
     //       `${Constants.MovieApi.API_MOVIES}${Constants.MovieApi.POPULAR_MOVIES}`,
     //       (req, res, ctx) => {
     //         return res(
-    //           ctx.status(204)
+    //           ctx.status(204),
+    //           ctx.delay(100)
     //         );
     //       }
     //     )

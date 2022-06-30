@@ -36,7 +36,21 @@ describe('MovieConverter', () => {
         movieApiResponseMock.original_language.toUpperCase(),
       );
       expect(movieResult.backdropPath).toBe(
-        `${Constants.MovieApi.IMAGE_URL}/w${500}${movieApiResponseMock.backdrop_path}`,
+        `${Constants.MovieApi.IMAGE_URL}/original${movieApiResponseMock.backdrop_path}`,
+      );
+    });
+
+    test('With url image and custom width', () => {
+      const movieApiResponseMock: MovieApiResponse = generateMovieApiResponse('url-image');
+
+      const movieResult = ConvertMovieApiResponseToMovie(movieApiResponseMock, 200);
+
+      expect(movieResult).toBeTruthy();
+      expect(movieResult.originalLanguage).toBe(
+        movieApiResponseMock.original_language.toUpperCase(),
+      );
+      expect(movieResult.backdropPath).toBe(
+        `${Constants.MovieApi.IMAGE_URL}/w${200}${movieApiResponseMock.backdrop_path}`,
       );
     });
   });

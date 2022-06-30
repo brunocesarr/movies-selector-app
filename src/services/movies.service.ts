@@ -81,7 +81,10 @@ const getPopularMovies = async (
     let result: Array<Movie> = [];
     if (results) {
       const moviesInfo: Array<Promise<Movie>> = results.map(async (item: MovieApiResponse) => {
-        const movieInfo = ConvertMovieApiResponseToMovie(item);
+        const movieInfo = ConvertMovieApiResponseToMovie(
+          item,
+          Constants.MovieApi.WIDTH_IMAGE_DEFAULT,
+        );
         if (item.genre_ids.length > 0) {
           const genresInfo: Genre[] = [];
           await Promise.all(
