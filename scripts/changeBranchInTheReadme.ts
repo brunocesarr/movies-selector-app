@@ -15,8 +15,10 @@ fs.readFile(
   function (err: NodeJS.ErrnoException | null, data: string | Buffer) {
     if (err) return console.error(err);
 
-    const currentLongBranch: string = (branch().includes('main') || branch().includes('develop') || branch().includes('release/'))
-      ? branch() : 'main';
+    const currentLongBranch: string =
+      branch().includes('main') || branch().includes('develop') || branch().includes('release/')
+        ? branch()
+        : 'main';
 
     const statusBadges: string = (data as string).split('***')[2];
     const statusBadgesCurrentBranch: string = statusBadgeMarkdownTemplate.replace(
