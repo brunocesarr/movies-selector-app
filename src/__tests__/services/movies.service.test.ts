@@ -124,7 +124,7 @@ describe('MovieService', () => {
               (genreResultSorted) => genreResultSorted.id === genreResult.id,
             ),
         ),
-      );
+      ).toBeTruthy();
       expect(genresResult.length).toBeTruthy();
     });
 
