@@ -13,4 +13,7 @@ npm run validate-publish-version
 echo "Execute Prettier"
 npm run format
 
+echo "Execute Lint Staged"
+npx lint-staged
+
 echo -e "${green}Git hook was SUCCESSFUL!${no_color}\n"
