@@ -14,6 +14,7 @@ export function HomeScreen() {
 
   const [popularMovies, setPopularMovies] = useState<Array<Movie>>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const getAllPopularMovies = useCallback(async () => {
     try {
@@ -21,7 +22,7 @@ export function HomeScreen() {
       const response = await getPopularMovies();
       setPopularMovies(response);
     } catch (error) {
-      console.error('Request error: ', error);
+      setErrorMessage((error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -32,6 +33,7 @@ export function HomeScreen() {
   }, [getAllPopularMovies]);
 
   if (loading) return <SpinnerLoader />;
+  if (errorMessage) return <Caption>{errorMessage}</Caption>;
   if (popularMovies.length === 0) return <Caption>Not Found</Caption>;
 
   return (

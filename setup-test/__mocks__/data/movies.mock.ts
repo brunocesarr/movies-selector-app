@@ -8,7 +8,7 @@ const createRandomMovieApiResponse = (): MovieApiResponse => {
     adult: faker.datatype.boolean(),
     genre_ids: Array.from({
       length: faker.datatype.number({
-        min: 0,
+        min: 1,
         max: 5,
       }),
     }).map(() => faker.datatype.number({ min: 1, max: 5 })),
@@ -34,7 +34,7 @@ const createRandomGenre = (id = 1): Genre => {
 
 const createRandomGenres = (): Genre[] => {
   const genresMovie: Genre[] = [];
-  Array.from({ length: faker.datatype.number({ min: 0, max: 10 }) }).forEach((_, index: number) => {
+  Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
     genresMovie.push(createRandomGenre(index));
   });
   return genresMovie;
@@ -49,7 +49,7 @@ const createRandomGenreApiResponse = (id = 1): GenreApiResponse => {
 
 const createRandomGenresApiResponse = (): GenreApiResponse[] => {
   const genresMovie: GenreApiResponse[] = [];
-  Array.from({ length: faker.datatype.number({ min: 0, max: 10 }) }).forEach((_, index: number) => {
+  Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
     genresMovie.push(createRandomGenreApiResponse(index));
   });
   return genresMovie;
