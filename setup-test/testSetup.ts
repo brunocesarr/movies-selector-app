@@ -19,6 +19,7 @@ jest.mock('@react-navigation/native', () => {
 });
 
 jest.mock('../node_modules/react-native/Libraries/Animated/NativeAnimatedHelper');
+// jest.useFakeTimers();
 
 beforeAll(() => server.listen());
 afterEach(() => {

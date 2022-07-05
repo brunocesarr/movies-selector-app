@@ -4,10 +4,10 @@ import React from 'react';
 
 describe('MovieDetailScreen', () => {
   describe('Render', () => {
-    test('Not found movie', () => {
+    test('Default', () => {
       const { container, getByText } = render(<MovieDetailScreen />);
 
-      const movieDetailText = getByText(/Not Found/i);
+      const movieDetailText = getByText(/Movie Detail/i);
 
       expect(container).toBeTruthy();
       expect(movieDetailText).toBeTruthy();

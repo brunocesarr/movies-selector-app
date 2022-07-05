@@ -1,0 +1,158 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.2
+  sonarcloud: sonarsource/sonarcloud@1.0.3
+
+jobs:
+  checkout:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/movies-selector-app
+
+  build:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/movies-selector-app/node_modules
+
+  test:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: "Run Test Suite"
+          environment:
+            JEST_JUNIT_OUTPUT: coverage/junit.xml
+          command: yarn test:coverage
+      - save_cache:
+          key: v1-coverage-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/movies-selector-app/coverage
+  
+  lint:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: "Run Linter"
+          command: yarn lint:all-report
+      - save_cache:
+          key: v1-linter-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/movies-selector-app/coverage
+        
+  report:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          keys:
+            - v1-coverage-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1  }}
+      - restore_cache:
+          keys:
+            - v1-linter-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1  }}
+      - store_test_results:
+          path: ~/movies-selector-app/coverage
+      - store_artifacts:
+          path: ~/movies-selector-app/coverage
+
+  sonar-scanner:
+    docker:
+      - image: cimg/node:16.15.1
+    working_directory: ~/movies-selector-app
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          keys:
+            - v1-coverage-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1  }}
+      - restore_cache:
+          keys:
+            - v1-linter-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1  }}
+      - sonarcloud/scan
+
+workflows:
+  build-app:
+    jobs:
+      - checkout
+      - build:
+          requires:
+            - checkout
+
+  test_and_lint_app:
+    jobs:
+      - checkout
+      - build:
+          requires:
+            - checkout
+      - test:
+          requires:
+            - build
+      - lint:
+          requires:
+            - build
+      - report:
+          requires:
+            - test
+            - lint
+
+  analysis-quality-gate:
+    jobs:
+      - checkout
+      - build:
+          requires:
+            - checkout
+      - test:
+          requires:
+            - build
+      - lint:
+          requires:
+            - build
+      - sonar-scanner:
+          requires:
+            - test
+            - lint
+          context: SonarCloud

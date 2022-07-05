@@ -48,6 +48,19 @@ const config: Config.InitialOptions = {
         outputDirectory: 'coverage',
       },
     ],
+    [
+      'jest-junit',
+      {
+        suiteName: 'Jest Tests',
+        outputDirectory: 'coverage',
+        uniqueOutputName: 'false',
+        classNameTemplate: '{classname} - {title}',
+        titleTemplate: '{classname} - {title}',
+        ancestorSeparator: ' › ',
+        usePathForSuiteName: 'true',
+        reportTestSuiteErrors: 'true',
+      },
+    ],
   ],
   testSequencer: '<rootDir>/setup-test/testSequencer.js',
   transform: {

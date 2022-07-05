@@ -1,6 +1,17 @@
+import { jest } from '@jest/globals';
 import { LoginScreen } from '@screens/Login';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
+
+const mockedNavigate = jest.fn();
+
+jest.mock('@react-navigation/native', () => {
+  return {
+    useNavigation: () => ({
+      navigate: mockedNavigate,
+    }),
+  };
+});
 
 describe('LoginScreen', () => {
   describe('Render', () => {
@@ -11,6 +22,19 @@ describe('LoginScreen', () => {
 
       expect(container).toBeTruthy();
       expect(movieLogoText).toBeTruthy();
+    });
+  });
+
+  describe('Login Action', () => {
+    test('On click login button', async () => {
+      const { container, getByText } = render(<LoginScreen />);
+
+      const loginButton = getByText(/Enter/i);
+      expect(container).toBeTruthy();
+      expect(loginButton).toBeTruthy();
+
+      fireEvent.press(loginButton);
+      expect(mockedNavigate).toHaveBeenCalledTimes(1);
     });
   });
 });

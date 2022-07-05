@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+green='\033[0;32m'
+yellow='\033[0;33m'
+no_color='\033[0m'
+
+echo -e "\n${yellow}Executing pre-push hook${no_color}\n"
+
+echo "Execute Lint"
+npm run lint:all
+
+echo "Execute Tests"
+npm run test:coverage
+
+echo -e "${green}Git hook was SUCCESSFUL!${no_color}\n"
