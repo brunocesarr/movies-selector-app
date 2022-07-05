@@ -2,9 +2,9 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { Genre, GenreApiResponse } from '@interfaces/Genre';
 import { Movie, MovieApiResponse } from '@interfaces/Movie';
 
-const createRandomMovieApiResponse = (): MovieApiResponse => {
+const createRandomMovieApiResponse = (id: number = 1): MovieApiResponse => {
   return {
-    id: faker.datatype.number(),
+    id,
     adult: faker.datatype.boolean(),
     genre_ids: Array.from({
       length: faker.datatype.number({
@@ -25,7 +25,7 @@ const createRandomMovieApiResponse = (): MovieApiResponse => {
   };
 };
 
-const createRandomGenre = (id = 1): Genre => {
+const createRandomGenre = (id: number = 1): Genre => {
   return {
     id: id,
     name: faker.name.firstName(),
@@ -35,7 +35,7 @@ const createRandomGenre = (id = 1): Genre => {
 const createRandomGenres = (): Genre[] => {
   const genresMovie: Genre[] = [];
   Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
-    genresMovie.push(createRandomGenre(index));
+    genresMovie.push(createRandomGenre(index + 1));
   });
   return genresMovie;
 };
@@ -50,14 +50,14 @@ const createRandomGenreApiResponse = (id = 1): GenreApiResponse => {
 const createRandomGenresApiResponse = (): GenreApiResponse[] => {
   const genresMovie: GenreApiResponse[] = [];
   Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
-    genresMovie.push(createRandomGenreApiResponse(index));
+    genresMovie.push(createRandomGenreApiResponse(index + 1));
   });
   return genresMovie;
 };
 
-const createRandomMovie = (): Movie => {
+const createRandomMovie = (id: number = 1): Movie => {
   return {
-    id: faker.unique(faker.datatype.number),
+    id,
     isAdultMovie: faker.datatype.boolean(),
     genres: createRandomGenres(),
     originalLanguage: faker.random.locale(),
@@ -74,13 +74,13 @@ const createRandomMovie = (): Movie => {
 };
 
 const moviesApiResponseMock: MovieApiResponse[] = [];
-Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach(() => {
-  moviesApiResponseMock.push(createRandomMovieApiResponse());
+Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
+  moviesApiResponseMock.push(createRandomMovieApiResponse(index + 1));
 });
 
 const moviesMock: Movie[] = [];
-Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach(() => {
-  moviesMock.push(createRandomMovie());
+Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
+  moviesMock.push(createRandomMovie(index + 1));
 });
 
 const genresApiResponseMock: GenreApiResponse[] = createRandomGenresApiResponse();
