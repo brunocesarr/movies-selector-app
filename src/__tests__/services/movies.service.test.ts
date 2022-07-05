@@ -128,7 +128,7 @@ describe('MovieService', () => {
       expect(genresResult.length).toBeTruthy();
     });
 
-    test('Ok Result without genres ids', async () => {
+    test('Ok Result with genre id not found', async () => {
       server.use(
         rest.get(
           `${Constants.MovieApi.API_MOVIES}${Constants.MovieApi.POPULAR_MOVIES}`,
@@ -136,7 +136,7 @@ describe('MovieService', () => {
             const response: MoviePaginateApiResponse = {
               page: 1,
               results: moviesApiResponseMock.map((item) => {
-                item.genre_ids = [];
+                item.genre_ids = [11];
                 return item;
               }),
             };
