@@ -74,12 +74,12 @@ const createRandomMovie = (id: number = 1): Movie => {
 };
 
 const moviesApiResponseMock: MovieApiResponse[] = [];
-Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
+Array.from({ length: faker.datatype.number({ min: 2, max: 10 }) }).forEach((_, index: number) => {
   moviesApiResponseMock.push(createRandomMovieApiResponse(index + 1));
 });
 
 const moviesMock: Movie[] = [];
-Array.from({ length: faker.datatype.number({ min: 1, max: 10 }) }).forEach((_, index: number) => {
+Array.from({ length: faker.datatype.number({ min: 2, max: 10 }) }).forEach((_, index: number) => {
   moviesMock.push(createRandomMovie(index + 1));
 });
 
