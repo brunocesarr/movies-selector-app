@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+green='\033[0;32m'
+yellow='\033[0;33m'
+no_color='\033[0m'
+
+echo -e "\n${yellow}Executing commit-msg hook${no_color}\n"
+
+echo "Execute Lint Commit Message"
+yarn commitlint --edit $1
+
+echo -e "${green}Git hook was SUCCESSFUL!${no_color}\n"undefined
