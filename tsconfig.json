@@ -5,41 +5,72 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react-native",
-    "lib": ["DOM", "ESNext"],
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["node", "jest"],
-    "typeRoots": ["./src/@types"],
+    "types": [
+      "node",
+      "jest"
+    ],
+    "typeRoots": [
+      "./src/@types"
+    ],
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@tests/*": ["./__tests__/*"],
-      "@mocks/*": ["./setup-test/__mocks__/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@helpers/*": ["./src/helpers/*"],
-      "@interfaces/*": ["./src/interfaces/*"],
-      "@router/*": ["./src/router/*"],
-      "@screens/*": ["./src/screens/*"],
-      "@services/*": ["./src/services/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@theme/*": ["./src/theme/*"]
+      "@tests/*": [
+        "./__tests__/*"
+      ],
+      "@mocks/*": [
+        "./setup-test/__mocks__/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@helpers/*": [
+        "./src/helpers/*"
+      ],
+      "@interfaces/*": [
+        "./src/interfaces/*"
+      ],
+      "@router/*": [
+        "./src/router/*"
+      ],
+      "@screens/*": [
+        "./src/screens/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@theme/*": [
+        "./src/theme/*"
+      ]
     }
   },
   "include": [
     "src/**/*",
     "**/*.test.ts",
-    "**/*.test.tsx",
+    "**/*.test.tsx"
   ],
   "exclude": [
     "scripts/**/*",
     "setup-test/**/*",
-    "node_modules", 
+    "node_modules",
     ".eslintrc.js",
-    "babel.config.js", 
+    "babel.config.js",
     "jest.config.ts"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }
