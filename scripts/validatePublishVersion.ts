@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 import { expo as expoAppFile } from '../app.json';
 import { version as appVersionLocally } from '../package.json';
 
@@ -14,7 +16,7 @@ async function isSamePublishVersion() {
     if (isNotFoundResponse(packageFileMainResponse)) return true;
     if (isErrorResponse(packageFileMainResponse)) return false;
 
-    const packageFileMain = await packageFileMainResponse.json();
+    const packageFileMain: any = await packageFileMainResponse.json();
     const appVersionPublish = packageFileMain.version;
     const expoAppVersion = expoAppFile.version;
 
