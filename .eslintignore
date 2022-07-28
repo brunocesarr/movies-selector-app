@@ -7,5 +7,6 @@ src/__tests__
 
 .eslintrc.js
 babel.config.js
-index.js
+index.ts
 metro.config.js
+commitlint.config.js
