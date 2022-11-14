@@ -8,9 +8,9 @@ no_color='\033[0m'
 echo -e "\n${yellow}Executing pre-push hook${no_color}\n"
 
 echo "Execute Lint"
-npm run lint:all
+#npm run lint:all
 
 echo "Execute Tests"
-npm run test:coverage
+#npm run test:coverage
 
 echo -e "${green}Git hook was SUCCESSFUL!${no_color}\n"
